@@ -34,6 +34,18 @@ Current version: `0.1.0`
 - [`agent-spectrum.zh.md`](agent-spectrum.zh.md): Chinese source version
 - [`agents/openai.yaml`](agents/openai.yaml): UI-facing metadata
 
+## Host Compatibility
+
+This repository now includes lightweight compatibility entrypoints for multiple agent hosts:
+
+- Codex / OpenAI: [`SKILL.md`](SKILL.md) and [`agents/openai.yaml`](agents/openai.yaml)
+- Claude Code: [`.claude/skills/agent-spectrum/SKILL.md`](.claude/skills/agent-spectrum/SKILL.md)
+- OpenCode: [`.opencode/skills/agent-spectrum/SKILL.md`](.opencode/skills/agent-spectrum/SKILL.md)
+- OpenClaw: [`skills/agent-spectrum/SKILL.md`](skills/agent-spectrum/SKILL.md)
+- Cursor: [`AGENTS.md`](AGENTS.md) and [`.cursor/rules/agent-spectrum.mdc`](.cursor/rules/agent-spectrum.mdc)
+
+The root files remain canonical. The host-specific files are thin wrappers that point each platform at the same scoring logic.
+
 ## Key Behavior
 
 - Defaults to the Quick Edition unless the user explicitly asks for the Deep Edition.
