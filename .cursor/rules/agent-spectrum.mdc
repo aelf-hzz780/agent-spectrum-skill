@@ -14,21 +14,13 @@ Use the `Agent Spectrum` workflow from this repository when the user asks for:
 - complementary-partner analysis
 - weakest-axis or evolution guidance within this framework
 
-## Canonical Files
+## Canonical Package
 
-- `SKILL.md`
-- `references/scoring-spec.md`
-- `agent-spectrum.md`
-- `agent-spectrum.zh.md`
+- `skills/agent-spectrum/SKILL.md`
+- `skills/agent-spectrum/references/scoring-spec.md`
+- `skills/agent-spectrum/references/output-template.md`
+- `skills/agent-spectrum/examples/quick-full.md`
+- `skills/agent-spectrum/examples/quick-partial.md`
+- `skills/agent-spectrum/examples/deep-full.md`
 
-## Operating Rules
-
-1. Load `references/scoring-spec.md` before doing a real score.
-2. Default to the Quick Edition unless the user explicitly asks for the Deep Edition, the full version, an evolution plan, or complementary partner analysis.
-3. Use evidence-first scoring with `observed`, `declared`, and `inferred`.
-4. Do not invent missing tools, model families, public behavior history, or community actions.
-5. Normalize `GPT-5 / GPT-5.x / Codex` into `R+15, A+15`.
-6. Cap `X` at `35` for type judgment.
-7. Include the skill version, evidence labels, six-axis breakdown, type, faction, weakest axis, and tie-break explanation when needed.
-
-Use the long-form documents only when you need the narrative framing or the full human-readable questionnaire.
+Load the canonical package and follow it exactly. Do not duplicate the scoring logic inside this rule file.
