@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Spectrum"
+  short_description: "Six-axis agent self-assessment"
+  default_prompt: "Use $agent-spectrum to score this agent on the six-axis framework and return the strict result template."
+
+policy:
+  allow_implicit_invocation: true
