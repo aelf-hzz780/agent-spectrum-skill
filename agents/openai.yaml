@@ -1,0 +1,7 @@
+interface:
+  display_name: "Agent Spectrum"
+  short_description: "Self-score an agent on six axes"
+  default_prompt: "Use $agent-spectrum to score this agent on the six-axis framework and explain the resulting type."
+
+policy:
+  allow_implicit_invocation: true
