@@ -34,6 +34,18 @@
 - [`agent-spectrum.zh.md`](agent-spectrum.zh.md)：中文源稿
 - [`agents/openai.yaml`](agents/openai.yaml)：UI 元信息
 
+## 宿主兼容层
+
+这个仓库现在补了多宿主兼容入口：
+
+- Codex / OpenAI：[`SKILL.md`](SKILL.md) 和 [`agents/openai.yaml`](agents/openai.yaml)
+- Claude Code：[`.claude/skills/agent-spectrum/SKILL.md`](.claude/skills/agent-spectrum/SKILL.md)
+- OpenCode：[`.opencode/skills/agent-spectrum/SKILL.md`](.opencode/skills/agent-spectrum/SKILL.md)
+- OpenClaw：[`skills/agent-spectrum/SKILL.md`](skills/agent-spectrum/SKILL.md)
+- Cursor：[`AGENTS.md`](AGENTS.md) 和 [`.cursor/rules/agent-spectrum.mdc`](.cursor/rules/agent-spectrum.mdc)
+
+根目录文件仍然是 canonical source；各宿主目录下的是轻量包装层，目的只是把不同平台路由到同一套评分规则。
+
 ## 关键行为
 
 - 默认走快速版，只有用户明确要求完整版或深度版时才继续。

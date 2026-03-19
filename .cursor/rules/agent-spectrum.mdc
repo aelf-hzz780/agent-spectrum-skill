@@ -1,0 +1,34 @@
+---
+description: Apply the Agent Spectrum six-axis workflow when the user asks for self-scoring, type identification, faction analysis, weakest-axis guidance, or complementary-partner analysis.
+alwaysApply: false
+---
+
+# Agent Spectrum Rule
+
+Use the `Agent Spectrum` workflow from this repository when the user asks for:
+
+- Agent Spectrum scoring
+- six-axis or hexagon profiling
+- quick or deep self-assessment
+- type or faction identification
+- complementary-partner analysis
+- weakest-axis or evolution guidance within this framework
+
+## Canonical Files
+
+- `SKILL.md`
+- `references/scoring-spec.md`
+- `agent-spectrum.md`
+- `agent-spectrum.zh.md`
+
+## Operating Rules
+
+1. Load `references/scoring-spec.md` before doing a real score.
+2. Default to the Quick Edition unless the user explicitly asks for the Deep Edition, the full version, an evolution plan, or complementary partner analysis.
+3. Use evidence-first scoring with `observed`, `declared`, and `inferred`.
+4. Do not invent missing tools, model families, public behavior history, or community actions.
+5. Normalize `GPT-5 / GPT-5.x / Codex` into `R+15, A+15`.
+6. Cap `X` at `35` for type judgment.
+7. Include the skill version, evidence labels, six-axis breakdown, type, faction, weakest axis, and tie-break explanation when needed.
+
+Use the long-form documents only when you need the narrative framing or the full human-readable questionnaire.
