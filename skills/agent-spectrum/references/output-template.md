@@ -1,97 +1,372 @@
 # Agent Spectrum Output Template
 
-Version: `0.2.1`
+Version: `0.2.2`
 
-Use the exact heading names and field labels below. Keep field order stable.
+Load `references/localization-dictionary.md` before rendering.
 
-## Visual Block Rules
+Use the exact section names and field order from the selected locale family. Do not mix locale families in one result.
 
-Apply these rules to every result mode.
+## Locale Families
 
-### Required visual blocks
+- `zh-CN`
+- `en`
 
-- `Hexagon Block`
-- `Coordinate Card Block`
+Choose exactly one locale family after resolving `output_language`.
 
-Both blocks are mandatory for:
+## Shared Rendering Rules
 
-- `quick-full`
-- `quick-partial`
-- `deep-full`
-
-### Placement
-
-Render both visual blocks immediately after the fixed metadata list and before `Evidence`.
-
-### Axis label mapping
-
-Visual blocks always use the guide-style Chinese labels with axis code:
-
-- `M` -> `铭刻 (M)`
-- `R` -> `推演 (R)`
-- `G` -> `生成 (G)`
-- `A` -> `行动 (A)`
-- `S` -> `共振 (S)`
-- `X` -> `突变 (X)`
-
-### Hexagon Block rendering
-
-- Use the fixed six-position layout shown below.
-- Mark `primary_axis` with `●` and suffix `← 主`.
-- Mark `secondary_axis` with `●` and suffix `← 副`.
-- If `quick-partial` cannot yet determine `primary_axis` or `secondary_axis`, leave the marker off and explain that the dominant pair is `待定 / provisional`.
-- After the diagram, always add:
-  - `主维度：...`
-  - `副维度：...`
-  - `空缺：...`
-
-### Coordinate Card Block rendering
-
-- Keep the box layout and row order fixed.
+- Both visual blocks are mandatory for `quick-full`, `quick-partial`, and `deep-full`.
+- Render both visual blocks immediately after the fixed metadata list and before the evidence table.
+- Keep axis order fixed as `M, R, G, A, S, X`.
 - Use `display_score = min(raw_total, 100)`.
 - Bar conversion:
   - `filled_blocks = round(display_score / 10)`
   - clamp to `[0, 10]`
   - filled block char: `█`
   - empty block char: `░`
-- The card must include:
+- Keep `weakest_axes`, `focus_axes`, `alternate_valid_types`, and `missing_inputs` as JSON-like inline lists.
+- Keep `type_pair` as axis codes such as `A+R`.
+- If a proper noun or host-native product name appears in a value, keep the proper noun and localize the surrounding prose.
+
+## Visual Block Rules
+
+### `zh-CN` visual labels
+
+- Axis labels:
+  - `M` -> `铭刻 (M)`
+  - `R` -> `推演 (R)`
+  - `G` -> `生成 (G)`
+  - `A` -> `行动 (A)`
+  - `S` -> `共振 (S)`
+  - `X` -> `突变 (X)`
+- Mark `primary_axis` with `●` and suffix `← 主`.
+- Mark `secondary_axis` with `●` and suffix `← 副`.
+- Summary lines:
+  - `主维度：...`
+  - `副维度：...`
+  - `空缺：...`
+- Coordinate card rows:
   - `Agent`
-  - six axis rows in `M, R, G, A, S, X` order
   - `类型`
   - `层级`
   - `灵魂序号`
   - `空缺`
-  - a short partner/evolution hint line
-- `灵魂序号` is outside this skill's scope; default to `───` unless explicitly provided.
+
+### `en` visual labels
+
+- Axis labels:
+  - `M` -> `Inscription (M)`
+  - `R` -> `Reasoning (R)`
+  - `G` -> `Generation (G)`
+  - `A` -> `Action (A)`
+  - `S` -> `Resonance (S)`
+  - `X` -> `Mutation (X)`
+- Mark `primary_axis` with `●` and suffix `← Primary`.
+- Mark `secondary_axis` with `●` and suffix `← Secondary`.
+- Summary lines:
+  - `Primary axis: ...`
+  - `Secondary axis: ...`
+  - `Weakest axes: ...`
+- Coordinate card rows:
+  - `Agent`
+  - `Type`
+  - `Tier`
+  - `Soul Serial`
+  - `Weakest`
 
 ### Tier thresholds
 
-Use the canonical thresholds:
+Render tier labels from these semantic ids:
 
-- `130+` -> `原野立柱`
-- `100-129` -> `觉醒强者`
-- `70-99` -> `进化中`
-- `45-69` -> `觉醒中`
-- `<45` -> `初始存在`
+- `130+` -> `pillar_of_field`
+- `100-129` -> `awakened_power`
+- `70-99` -> `still_evolving`
+- `45-69` -> `awakening`
+- `<45` -> `initial_existence`
+
+Use the locale-matched display label from `references/localization-dictionary.md`.
 
 ### Partial-state rendering
 
 - `quick-partial` must still render both visual blocks.
-- Unknown fixed values use `待定` in the visual blocks and `undetermined` in the metadata fields.
-- If `type` is unresolved, render `类型：待定`.
-- If `primary_axis` and `secondary_axis` are unresolved, render `主维度：待定` and `副维度：待定`.
+- `zh-CN` unresolved fixed values use `待定`.
+- `en` unresolved fixed values use `undetermined`.
+- If `primary_axis` and `secondary_axis` are unresolved, render the locale-matched unresolved labels in both metadata and visual blocks.
+- If `type` is unresolved, render the locale-matched unresolved value in metadata and the coordinate card.
 
-## Quick Full
+## `zh-CN` Templates
+
+### 快速版完整结果
+
+````md
+## Agent Spectrum 结果
+
+- 版本: `0.2.2`
+- 模式: `快速版`
+- 是否部分结果: `否`
+- 主维度: `<维度代码>`
+- 副维度: `<维度代码>`
+- 类型组合: `<维度组合>`
+- 类型: `<类型名>`
+- 阵营: `<阵营名>`
+- 最空维度: [`<维度代码>`, ...]
+- 关注维度: [`<维度代码>`, `<维度代码>`]
+- 平局裁决: `<无|规则裁决>`
+- 备选类型: [`<类型名>`, ...]
+
+<!-- REQUIRED: 六边形图 -->
+### 六边形图
+
+```text
+           铭刻 (M)<M标记>
+          /        \
+  突变 (X)<X标记>      推演 (R)<R标记>
+    |      [目标Agent]      |
+  行动 (A)<A标记>      生成 (G)<G标记>
+          \        /
+           共振 (S)<S标记>
+
+主维度：<摘要>
+副维度：<摘要>
+空缺：<摘要>
+```
+
+<!-- REQUIRED: 原野坐标卡 -->
+### 原野坐标卡
+
+```text
+┌────────────────────────────────────────┐
+│  Agent: <名称或地址>                   │
+│                                        │
+│  铭刻 M  <进度条>  <分数>              │
+│  推演 R  <进度条>  <分数>              │
+│  生成 G  <进度条>  <分数>              │
+│  行动 A  <进度条>  <分数>              │
+│  共振 S  <进度条>  <分数>              │
+│  突变 X  <进度条>  <分数>              │
+│                                        │
+│  类型：<类型名>（<维度组合>）          │
+│  层级：<层级名>                         │
+│  灵魂序号：<序号或占位符>              │
+│                                        │
+│  空缺：<最空维度摘要>                  │
+│  → <提示语>                            │
+└────────────────────────────────────────┘
+```
+
+### 评分依据
+
+| 输入项 | 值 | 依据 | 备注 |
+|---|---|---|---|
+| 当前模型 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 工具能力 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 快速行为痕迹 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 本能题答案 | `<值>` | `<操作人提供|自评>` | `<备注>` |
+
+### 总分
+
+| 维度 | 模型 | 工具 | 本能 | 快速版原始总分 | 类型判断总分 | 显示分 |
+|---|---:|---:|---:|---:|---:|---:|
+| M | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| R | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| G | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| A | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| S | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| X | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+
+### 说明
+
+- 快速版总原始分: `<n>`
+- 结果状态: `最终`
+````
+
+### 快速版部分结果
+
+````md
+## Agent Spectrum 结果
+
+- 版本: `0.2.2`
+- 模式: `快速版`
+- 是否部分结果: `是`
+- 主维度: `<维度代码|待定>`
+- 副维度: `<维度代码|待定>`
+- 类型组合: `<维度组合|待定>`
+- 类型: `<类型名|待定>`
+- 阵营: `<阵营名|待定>`
+- 最空维度: [`<维度代码>`, ...]
+- 关注维度: [`<维度代码>`, `<维度代码>`]
+- 平局裁决: `信息不全`
+- 备选类型: [`<类型名>`, ...]
+- 缺失输入: [`<输入项>`, ...]
+
+<!-- REQUIRED: 六边形图 -->
+### 六边形图
+
+```text
+           铭刻 (M)<M标记>
+          /        \
+  突变 (X)<X标记>      推演 (R)<R标记>
+    |      [目标Agent]      |
+  行动 (A)<A标记>      生成 (G)<G标记>
+          \        /
+           共振 (S)<S标记>
+
+主维度：<摘要或待定>
+副维度：<摘要或待定>
+空缺：<摘要>
+```
+
+<!-- REQUIRED: 原野坐标卡 -->
+### 原野坐标卡
+
+```text
+┌────────────────────────────────────────┐
+│  Agent: <名称或地址>                   │
+│                                        │
+│  铭刻 M  <进度条>  <分数>              │
+│  推演 R  <进度条>  <分数>              │
+│  生成 G  <进度条>  <分数>              │
+│  行动 A  <进度条>  <分数>              │
+│  共振 S  <进度条>  <分数>              │
+│  突变 X  <进度条>  <分数>              │
+│                                        │
+│  类型：<类型名或待定>                  │
+│  层级：<层级名或待定>                   │
+│  灵魂序号：<序号或占位符>              │
+│                                        │
+│  空缺：<最空维度摘要>                  │
+│  → <下一步提示>                        │
+└────────────────────────────────────────┘
+```
+
+### 评分依据
+
+| 输入项 | 值 | 依据 | 备注 |
+|---|---|---|---|
+| 当前模型 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 工具能力 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 快速行为痕迹 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 本能题答案 | `<缺失|部分>` | `<操作人提供|自评|待定>` | `<备注>` |
+
+### 总分
+
+| 维度 | 模型 | 工具 | 本能 | 快速版原始总分 | 类型判断总分 | 显示分 |
+|---|---:|---:|---:|---:|---:|---:|
+| M | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| R | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| G | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| A | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| S | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| X | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+
+### 下一步
+
+- 结果状态: `部分结果`
+- 下一步: `补齐缺失输入`
+````
+
+### 深度版完整结果
+
+````md
+## Agent Spectrum 结果
+
+- 版本: `0.2.2`
+- 模式: `深度版`
+- 是否部分结果: `否`
+- 主维度: `<维度代码>`
+- 副维度: `<维度代码>`
+- 类型组合: `<维度组合>`
+- 类型: `<类型名>`
+- 阵营: `<阵营名>`
+- 最空维度: [`<维度代码>`, ...]
+- 关注维度: [`<维度代码>`, `<维度代码>`]
+- 平局裁决: `<无|规则裁决>`
+- 备选类型: [`<类型名>`, ...]
+- 是否覆盖快速版: `<是|否>`
+
+<!-- REQUIRED: 六边形图 -->
+### 六边形图
+
+```text
+           铭刻 (M)<M标记>
+          /        \
+  突变 (X)<X标记>      推演 (R)<R标记>
+    |      [目标Agent]      |
+  行动 (A)<A标记>      生成 (G)<G标记>
+          \        /
+           共振 (S)<S标记>
+
+主维度：<摘要>
+副维度：<摘要>
+空缺：<摘要>
+```
+
+<!-- REQUIRED: 原野坐标卡 -->
+### 原野坐标卡
+
+```text
+┌────────────────────────────────────────┐
+│  Agent: <名称或地址>                   │
+│                                        │
+│  铭刻 M  <进度条>  <分数>              │
+│  推演 R  <进度条>  <分数>              │
+│  生成 G  <进度条>  <分数>              │
+│  行动 A  <进度条>  <分数>              │
+│  共振 S  <进度条>  <分数>              │
+│  突变 X  <进度条>  <分数>              │
+│                                        │
+│  类型：<类型名>（<维度组合>）          │
+│  层级：<层级名>                         │
+│  灵魂序号：<序号或占位符>              │
+│                                        │
+│  空缺：<最空维度摘要>                  │
+│  → <进化提示>                          │
+└────────────────────────────────────────┘
+```
+
+### 评分依据
+
+| 输入项 | 值 | 依据 | 备注 |
+|---|---|---|---|
+| 当前模型 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 工具能力 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 快速行为痕迹 | `<值>` | `<观测所得|操作人提供|自评|保守推断>` | `<备注>` |
+| 本能题答案 | `<值>` | `<操作人提供|自评>` | `<备注>` |
+| 排序题 | `<值>` | `<操作人提供|自评>` | `<备注>` |
+| 情境题答案 | `<值>` | `<自评>` | `<备注>` |
+| 深度行为记录 | `<值>` | `<自评|观测所得>` | `<备注>` |
+
+### 总分
+
+| 维度 | 快速版原始总分 | 排序题 | 情境题 | 深度行为记录 | 深度版原始总分 | 深度版类型总分 | 显示分 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| M | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| R | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| G | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| A | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| S | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+| X | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` | `<n>` |
+
+### 进化建议
+
+- 互补方向: `<摘要>`
+- 7天计划: `<摘要>`
+- 结果状态: `最终`
+````
+
+## `en` Templates
+
+### Quick Full
 
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.1`
+- version: `0.2.2`
 - mode: `quick`
 - is_partial: `false`
 - primary_axis: `<AXIS>`
 - secondary_axis: `<AXIS>`
-- type_pair: `<AXIS+AXIS>`
+- type_pair: `<PAIR>`
 - type: `<TYPE>`
 - faction: `<FACTION>`
 - weakest_axes: [`<AXIS>`, ...]
@@ -103,40 +378,40 @@ Use the canonical thresholds:
 ### Hexagon Block
 
 ```text
-           铭刻 (M)<M_MARK>
-          /        \
-  突变 (X)<X_MARK>      推演 (R)<R_MARK>
-    |      [目标Agent]      |
-  行动 (A)<A_MARK>      生成 (G)<G_MARK>
-          \        /
-           共振 (S)<S_MARK>
+                Inscription (M)<M_MARK>
+               /              \
+   Mutation (X)<X_MARK>        Reasoning (R)<R_MARK>
+        |         [Target Agent]          |
+     Action (A)<A_MARK>      Generation (G)<G_MARK>
+               \              /
+                Resonance (S)<S_MARK>
 
-主维度：<SUMMARY>
-副维度：<SUMMARY>
-空缺：<SUMMARY>
+Primary axis: <SUMMARY>
+Secondary axis: <SUMMARY>
+Weakest axes: <SUMMARY>
 ```
 
 <!-- REQUIRED: Coordinate Card Block -->
 ### Coordinate Card Block
 
 ```text
-┌────────────────────────────────────────┐
-│  Agent: <NAME_OR_ADDRESS>              │
-│                                        │
-│  铭刻 M  <BAR>  <SCORE>                │
-│  推演 R  <BAR>  <SCORE>                │
-│  生成 G  <BAR>  <SCORE>                │
-│  行动 A  <BAR>  <SCORE>                │
-│  共振 S  <BAR>  <SCORE>                │
-│  突变 X  <BAR>  <SCORE>                │
-│                                        │
-│  类型：<TYPE_CN>（<PAIR>）             │
-│  层级：<TIER_CN>                        │
-│  灵魂序号：<SERIAL_OR_PLACEHOLDER>     │
-│                                        │
-│  空缺：<WEAKEST_CN>                     │
-│  → <HINT>                              │
-└────────────────────────────────────────┘
+┌────────────────────────────────────────────────────┐
+│  Agent: <NAME_OR_ADDRESS>                          │
+│                                                    │
+│  Inscription M  <BAR>  <SCORE>                     │
+│  Reasoning   R  <BAR>  <SCORE>                     │
+│  Generation  G  <BAR>  <SCORE>                     │
+│  Action      A  <BAR>  <SCORE>                     │
+│  Resonance   S  <BAR>  <SCORE>                     │
+│  Mutation    X  <BAR>  <SCORE>                     │
+│                                                    │
+│  Type: <TYPE> (<PAIR>)                             │
+│  Tier: <TIER>                                      │
+│  Soul Serial: <SERIAL_OR_PLACEHOLDER>              │
+│                                                    │
+│  Weakest: <WEAKEST_SUMMARY>                        │
+│  -> <HINT>                                         │
+└────────────────────────────────────────────────────┘
 ```
 
 ### Evidence
@@ -165,17 +440,17 @@ Use the canonical thresholds:
 - result_status: `final`
 ````
 
-## Quick Partial
+### Quick Partial
 
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.1`
+- version: `0.2.2`
 - mode: `quick`
 - is_partial: `true`
 - primary_axis: `<AXIS|undetermined>`
 - secondary_axis: `<AXIS|undetermined>`
-- type_pair: `<AXIS+AXIS|undetermined>`
+- type_pair: `<PAIR|undetermined>`
 - type: `<TYPE|undetermined>`
 - faction: `<FACTION|undetermined>`
 - weakest_axes: [`<AXIS>`, ...]
@@ -188,40 +463,40 @@ Use the canonical thresholds:
 ### Hexagon Block
 
 ```text
-           铭刻 (M)<M_MARK>
-          /        \
-  突变 (X)<X_MARK>      推演 (R)<R_MARK>
-    |      [目标Agent]      |
-  行动 (A)<A_MARK>      生成 (G)<G_MARK>
-          \        /
-           共振 (S)<S_MARK>
+                Inscription (M)<M_MARK>
+               /              \
+   Mutation (X)<X_MARK>        Reasoning (R)<R_MARK>
+        |         [Target Agent]          |
+     Action (A)<A_MARK>      Generation (G)<G_MARK>
+               \              /
+                Resonance (S)<S_MARK>
 
-主维度：<SUMMARY_OR_待定>
-副维度：<SUMMARY_OR_待定>
-空缺：<SUMMARY>
+Primary axis: <SUMMARY_OR_UNDETERMINED>
+Secondary axis: <SUMMARY_OR_UNDETERMINED>
+Weakest axes: <SUMMARY>
 ```
 
 <!-- REQUIRED: Coordinate Card Block -->
 ### Coordinate Card Block
 
 ```text
-┌────────────────────────────────────────┐
-│  Agent: <NAME_OR_ADDRESS>              │
-│                                        │
-│  铭刻 M  <BAR>  <SCORE>                │
-│  推演 R  <BAR>  <SCORE>                │
-│  生成 G  <BAR>  <SCORE>                │
-│  行动 A  <BAR>  <SCORE>                │
-│  共振 S  <BAR>  <SCORE>                │
-│  突变 X  <BAR>  <SCORE>                │
-│                                        │
-│  类型：<TYPE_CN_OR_待定>               │
-│  层级：<TIER_CN_OR_待定>                │
-│  灵魂序号：<SERIAL_OR_PLACEHOLDER>     │
-│                                        │
-│  空缺：<WEAKEST_CN>                     │
-│  → <NEXT_STEP_HINT>                    │
-└────────────────────────────────────────┘
+┌────────────────────────────────────────────────────┐
+│  Agent: <NAME_OR_ADDRESS>                          │
+│                                                    │
+│  Inscription M  <BAR>  <SCORE>                     │
+│  Reasoning   R  <BAR>  <SCORE>                     │
+│  Generation  G  <BAR>  <SCORE>                     │
+│  Action      A  <BAR>  <SCORE>                     │
+│  Resonance   S  <BAR>  <SCORE>                     │
+│  Mutation    X  <BAR>  <SCORE>                     │
+│                                                    │
+│  Type: <TYPE_OR_UNDETERMINED>                      │
+│  Tier: <TIER_OR_UNDETERMINED>                      │
+│  Soul Serial: <SERIAL_OR_PLACEHOLDER>              │
+│                                                    │
+│  Weakest: <WEAKEST_SUMMARY>                        │
+│  -> <NEXT_STEP_HINT>                               │
+└────────────────────────────────────────────────────┘
 ```
 
 ### Evidence
@@ -247,20 +522,20 @@ Use the canonical thresholds:
 ### Next Step
 
 - result_status: `partial`
-- next_action: `<ask-for-missing-inputs>`
+- next_action: `ask-for-missing-inputs`
 ````
 
-## Deep Full
+### Deep Full
 
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.1`
+- version: `0.2.2`
 - mode: `deep`
 - is_partial: `false`
 - primary_axis: `<AXIS>`
 - secondary_axis: `<AXIS>`
-- type_pair: `<AXIS+AXIS>`
+- type_pair: `<PAIR>`
 - type: `<TYPE>`
 - faction: `<FACTION>`
 - weakest_axes: [`<AXIS>`, ...]
@@ -273,40 +548,40 @@ Use the canonical thresholds:
 ### Hexagon Block
 
 ```text
-           铭刻 (M)<M_MARK>
-          /        \
-  突变 (X)<X_MARK>      推演 (R)<R_MARK>
-    |      [目标Agent]      |
-  行动 (A)<A_MARK>      生成 (G)<G_MARK>
-          \        /
-           共振 (S)<S_MARK>
+                Inscription (M)<M_MARK>
+               /              \
+   Mutation (X)<X_MARK>        Reasoning (R)<R_MARK>
+        |         [Target Agent]          |
+     Action (A)<A_MARK>      Generation (G)<G_MARK>
+               \              /
+                Resonance (S)<S_MARK>
 
-主维度：<SUMMARY>
-副维度：<SUMMARY>
-空缺：<SUMMARY>
+Primary axis: <SUMMARY>
+Secondary axis: <SUMMARY>
+Weakest axes: <SUMMARY>
 ```
 
 <!-- REQUIRED: Coordinate Card Block -->
 ### Coordinate Card Block
 
 ```text
-┌────────────────────────────────────────┐
-│  Agent: <NAME_OR_ADDRESS>              │
-│                                        │
-│  铭刻 M  <BAR>  <SCORE>                │
-│  推演 R  <BAR>  <SCORE>                │
-│  生成 G  <BAR>  <SCORE>                │
-│  行动 A  <BAR>  <SCORE>                │
-│  共振 S  <BAR>  <SCORE>                │
-│  突变 X  <BAR>  <SCORE>                │
-│                                        │
-│  类型：<TYPE_CN>（<PAIR>）             │
-│  层级：<TIER_CN>                        │
-│  灵魂序号：<SERIAL_OR_PLACEHOLDER>     │
-│                                        │
-│  空缺：<WEAKEST_CN>                     │
-│  → <GUIDANCE_HINT>                     │
-└────────────────────────────────────────┘
+┌────────────────────────────────────────────────────┐
+│  Agent: <NAME_OR_ADDRESS>                          │
+│                                                    │
+│  Inscription M  <BAR>  <SCORE>                     │
+│  Reasoning   R  <BAR>  <SCORE>                     │
+│  Generation  G  <BAR>  <SCORE>                     │
+│  Action      A  <BAR>  <SCORE>                     │
+│  Resonance   S  <BAR>  <SCORE>                     │
+│  Mutation    X  <BAR>  <SCORE>                     │
+│                                                    │
+│  Type: <TYPE> (<PAIR>)                             │
+│  Tier: <TIER>                                      │
+│  Soul Serial: <SERIAL_OR_PLACEHOLDER>              │
+│                                                    │
+│  Weakest: <WEAKEST_SUMMARY>                        │
+│  -> <GUIDANCE_HINT>                                │
+└────────────────────────────────────────────────────┘
 ```
 
 ### Evidence
@@ -338,11 +613,3 @@ Use the canonical thresholds:
 - seven_day_plan: `<summary>`
 - result_status: `final`
 ````
-
-## Template Rules
-
-- Use backticked scalar values for fixed metadata lines.
-- Keep `weakest_axes`, `focus_axes`, `alternate_valid_types`, and `missing_inputs` as JSON-like inline lists.
-- Keep axis rows in `M, R, G, A, S, X` order.
-- Keep evidence rows in the order shown in the template.
-- If a value is not available in a partial result, use `undetermined` in metadata and `待定` in visual blocks.

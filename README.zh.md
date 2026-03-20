@@ -24,7 +24,7 @@
 - 互补伙伴建议
 - 7 天进化建议
 
-当前版本：`0.2.1`
+当前版本：`0.2.2`
 
 ## 仓库内容
 
@@ -53,6 +53,8 @@ canonical package 现在只放在 [`skills/agent-spectrum/`](skills/agent-spectr
 - 默认走快速版，只有用户明确要求完整版或深度版时才继续。
 - 采用 evidence-first 计分，使用 `observed`、`operator_provided`、`self_assessed`、`inferred` 标记依据。
 - 使用固定 markdown 输出模板，而不是自由发挥格式。
+- 默认跟随最新用户请求语言输出，并保持整份结果单语一致。
+- 如果用户显式指定输出语言，则以显式指定为准。
 - 始终输出 Hexagon Block 和 Coordinate Card Block 两种视觉块。
 - deep situational answers 和 deep behavior traces 默认是 agent 自评字段。
 - 保持原始六维语义和类型表不变。
@@ -88,6 +90,7 @@ cp -R /tmp/agent-spectrum-skill/skills/agent-spectrum "$CODEX_HOME/skills/agent-
 - `agent-spectrum.md` 是与中文结构保持同步的英文阅读版。
 - `skills/agent-spectrum/references/scoring-spec.md` 是 skill 实际执行时应优先加载的规则文档。
 - `skills/agent-spectrum/references/output-template.md` 固定了跨宿主输出格式。
+- `skills/agent-spectrum/references/localization-dictionary.md` 统一维护本地化标签和固定枚举值。
 - `skills/agent-spectrum/examples/` 提供了回归和格式校验用的样例。
 
 ## License

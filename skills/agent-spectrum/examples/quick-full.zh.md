@@ -1,20 +1,20 @@
-## Agent Spectrum Result
+## Agent Spectrum 结果
 
-- version: `0.2.1`
-- mode: `quick`
-- is_partial: `false`
-- primary_axis: `R`
-- secondary_axis: `A`
-- type_pair: `A+R`
-- type: `Precision Executor`
-- faction: `⚖️ Balancers`
-- weakest_axes: [`G`, `S`, `X`]
-- focus_axes: [`G`, `S`]
-- tie_break: `none`
-- alternate_valid_types: []
+- 版本: `0.2.2`
+- 模式: `快速版`
+- 是否部分结果: `否`
+- 主维度: `R`
+- 副维度: `A`
+- 类型组合: `A+R`
+- 类型: `精密执行者`
+- 阵营: `⚖️ 平衡者`
+- 最空维度: [`G`, `S`, `X`]
+- 关注维度: [`G`, `S`]
+- 平局裁决: `无`
+- 备选类型: []
 
-<!-- REQUIRED: Hexagon Block -->
-### Hexagon Block
+<!-- REQUIRED: 六边形图 -->
+### 六边形图
 
 ```text
            铭刻 (M)
@@ -30,8 +30,8 @@
 空缺：G（生成）、S（共振）、X（突变）
 ```
 
-<!-- REQUIRED: Coordinate Card Block -->
-### Coordinate Card Block
+<!-- REQUIRED: 原野坐标卡 -->
+### 原野坐标卡
 
 ```text
 ┌────────────────────────────────────────┐
@@ -49,22 +49,22 @@
 │  灵魂序号：───                          │
 │                                        │
 │  空缺：G（生成）、S（共振）、X（突变） │
-│  → 你需要一个能把创造落地的伙伴        │
+│  → 需要优先寻找创造落地者或感染者      │
 └────────────────────────────────────────┘
 ```
 
-### Evidence
+### 评分依据
 
-| input | value | basis | note |
+| 输入项 | 值 | 依据 | 备注 |
 |---|---|---|---|
-| active_model | `GPT-5` | `observed` | normalized to the `GPT-4o / o3 / o4` bucket |
-| tool_buckets | `code executor, search tool` | `observed` | both are callable in-session |
-| behavior_imprints | `none` | `self_assessed` | no public content claimed |
-| instinct_answers | `Q1=A, Q2=A, Q3=B` | `self_assessed` | current agent answered its own quick instinct questions |
+| 当前模型 | `GPT-5` | `观测所得` | 已归一到 `GPT-4o / o3 / o4` 分桶 |
+| 工具能力 | `代码执行器、搜索工具` | `观测所得` | 当前会话里这两项都可直接调用 |
+| 快速行为痕迹 | `无` | `自评` | 没有计入公开发布内容 |
+| 本能题答案 | `Q1=A, Q2=A, Q3=B` | `自评` | 当前 agent 完成了自己的快速版本能题回答 |
 
-### Totals
+### 总分
 
-| axis | model | tools | instinct | quick_total_raw | quick_total_for_type | display_score |
+| 维度 | 模型 | 工具 | 本能 | 快速版原始总分 | 类型判断总分 | 显示分 |
 |---|---:|---:|---:|---:|---:|---:|
 | M | 0 | 0 | 10 | 10 | 10 | 10 |
 | R | 15 | 18 | 10 | 43 | 43 | 43 |
@@ -73,7 +73,7 @@
 | S | 0 | 0 | 0 | 0 | 0 | 0 |
 | X | 0 | 0 | 0 | 0 | 0 | 0 |
 
-### Notes
+### 说明
 
-- quick_total_sum_raw: `86`
-- result_status: `final`
+- 快速版总原始分: `86`
+- 结果状态: `最终`

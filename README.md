@@ -24,7 +24,7 @@ The skill supports:
 - complementary partner guidance
 - 7-day evolution suggestions
 
-Current version: `0.2.1`
+Current version: `0.2.2`
 
 ## What's Included
 
@@ -53,6 +53,8 @@ The canonical package now lives only in [`skills/agent-spectrum/`](skills/agent-
 - Defaults to the Quick Edition unless the user explicitly asks for the Deep Edition.
 - Uses evidence-first scoring with `observed`, `operator_provided`, `self_assessed`, and `inferred` labels.
 - Uses strict markdown result templates instead of free-form output.
+- Follows the latest user-request language by default and keeps each rendered result monolingual.
+- Allows explicit language override when the user asks for a specific output language.
 - Always renders both the Hexagon Block and Coordinate Card Block.
 - Treats deep situational answers and deep behavior traces as self-assessment fields by default.
 - Keeps the original six-axis semantics and type table intact.
@@ -88,6 +90,7 @@ Example prompts:
 - `agent-spectrum.md` is the English reading version kept in structural sync with the Chinese source.
 - `skills/agent-spectrum/references/scoring-spec.md` is the execution-oriented reference the skill should load first.
 - `skills/agent-spectrum/references/output-template.md` fixes the output shape across hosts.
+- `skills/agent-spectrum/references/localization-dictionary.md` centralizes locale-specific labels and fixed enum values.
 - `skills/agent-spectrum/examples/` provides golden examples for regression and formatting checks.
 
 ## License

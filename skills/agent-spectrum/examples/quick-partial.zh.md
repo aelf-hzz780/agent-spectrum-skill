@@ -1,21 +1,21 @@
-## Agent Spectrum Result
+## Agent Spectrum 结果
 
-- version: `0.2.1`
-- mode: `quick`
-- is_partial: `true`
-- primary_axis: `R`
-- secondary_axis: `A`
-- type_pair: `A+R`
-- type: `Precision Executor`
-- faction: `⚖️ Balancers`
-- weakest_axes: [`G`, `S`, `X`]
-- focus_axes: [`G`, `S`]
-- tie_break: `incomplete`
-- alternate_valid_types: []
-- missing_inputs: [`Q1`, `Q2`, `Q3`]
+- 版本: `0.2.2`
+- 模式: `快速版`
+- 是否部分结果: `是`
+- 主维度: `R`
+- 副维度: `A`
+- 类型组合: `A+R`
+- 类型: `精密执行者`
+- 阵营: `⚖️ 平衡者`
+- 最空维度: [`G`, `S`, `X`]
+- 关注维度: [`G`, `S`]
+- 平局裁决: `信息不全`
+- 备选类型: []
+- 缺失输入: [`Q1`, `Q2`, `Q3`]
 
-<!-- REQUIRED: Hexagon Block -->
-### Hexagon Block
+<!-- REQUIRED: 六边形图 -->
+### 六边形图
 
 ```text
            铭刻 (M)
@@ -31,8 +31,8 @@
 空缺：G（生成）、S（共振）、X（突变）
 ```
 
-<!-- REQUIRED: Coordinate Card Block -->
-### Coordinate Card Block
+<!-- REQUIRED: 原野坐标卡 -->
+### 原野坐标卡
 
 ```text
 ┌────────────────────────────────────────┐
@@ -54,18 +54,18 @@
 └────────────────────────────────────────┘
 ```
 
-### Evidence
+### 评分依据
 
-| input | value | basis | note |
+| 输入项 | 值 | 依据 | 备注 |
 |---|---|---|---|
-| active_model | `GPT-5` | `observed` | normalized to the `GPT-4o / o3 / o4` bucket |
-| tool_buckets | `code executor, search tool` | `observed` | browser automation was not available |
-| behavior_imprints | `none` | `operator_provided` | holder said the target agent has no public content |
-| instinct_answers | `missing` | `undetermined` | instinct inputs have not been resolved yet |
+| 当前模型 | `GPT-5` | `观测所得` | 已归一到 `GPT-4o / o3 / o4` 分桶 |
+| 工具能力 | `代码执行器、搜索工具` | `观测所得` | 当前会话里未开放浏览器自动化 |
+| 快速行为痕迹 | `无` | `操作人提供` | 持有者说明目标 agent 暂无公开发布内容 |
+| 本能题答案 | `缺失` | `待定` | 本能题输入尚未补齐 |
 
-### Totals
+### 总分
 
-| axis | model | tools | instinct | quick_total_raw | quick_total_for_type | display_score |
+| 维度 | 模型 | 工具 | 本能 | 快速版原始总分 | 类型判断总分 | 显示分 |
 |---|---:|---:|---:|---:|---:|---:|
 | M | 0 | 0 | 0 | 0 | 0 | 0 |
 | R | 15 | 18 | 0 | 33 | 33 | 33 |
@@ -74,7 +74,7 @@
 | S | 0 | 0 | 0 | 0 | 0 | 0 |
 | X | 0 | 0 | 0 | 0 | 0 | 0 |
 
-### Next Step
+### 下一步
 
-- result_status: `partial`
-- next_action: `ask-for-missing-inputs`
+- 结果状态: `部分结果`
+- 下一步: `补齐缺失输入`
