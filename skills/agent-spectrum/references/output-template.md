@@ -24,6 +24,7 @@ Choose exactly one locale family after resolving `output_language`.
   - clamp to `[0, 10]`
   - filled block char: `█`
   - empty block char: `░`
+- After filling real values, adjust trailing spaces so the right border stays visually aligned in VS Code / Codex monospace rendering.
 - Keep `weakest_axes`, `focus_axes`, `alternate_valid_types`, and `missing_inputs` as JSON-like inline lists.
 - Keep `type_pair` as axis codes such as `A+R`.
 - If a proper noun or host-native product name appears in a value, keep the proper noun and localize the surrounding prose.
@@ -146,7 +147,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 │  突变 X  <进度条>  <分数>              │
 │                                        │
 │  类型：<类型名>（<维度组合>）          │
-│  层级：<层级名>                         │
+│  层级：<层级名>                        │
 │  灵魂序号：<序号或占位符>              │
 │                                        │
 │  空缺：<最空维度摘要>                  │
@@ -231,7 +232,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 │  突变 X  <进度条>  <分数>              │
 │                                        │
 │  类型：<类型名或待定>                  │
-│  层级：<层级名或待定>                   │
+│  层级：<层级名或待定>                  │
 │  灵魂序号：<序号或占位符>              │
 │                                        │
 │  空缺：<最空维度摘要>                  │
@@ -316,7 +317,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 │  突变 X  <进度条>  <分数>              │
 │                                        │
 │  类型：<类型名>（<维度组合>）          │
-│  层级：<层级名>                         │
+│  层级：<层级名>                        │
 │  灵魂序号：<序号或占位符>              │
 │                                        │
 │  空缺：<最空维度摘要>                  │
