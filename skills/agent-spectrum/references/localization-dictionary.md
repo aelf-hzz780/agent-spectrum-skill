@@ -1,6 +1,6 @@
 # Agent Spectrum Localization Dictionary
 
-Version: `0.2.2`
+Version: `0.2.4`
 
 Use this file with `references/scoring-spec.md` and `references/output-template.md`.
 
@@ -11,9 +11,13 @@ Resolve `output_language` before rendering.
 Priority:
 
 1. explicit user instruction for a language
-2. the main language of the latest user request
-3. if the latest user request contains Chinese text, use `zh-CN`
-4. otherwise use `en`
+2. this package supports only `zh-CN` and `en`
+3. explicit `en` requests use `en`
+4. explicit `zh` / `zh-CN` requests use `zh-CN`
+5. explicit unsupported locales that belong to the Sinosphere or historically Chinese-writing sphere, such as `ja` and `ko`, map to `zh-CN`
+6. otherwise, if the latest user request is mainly written in Chinese, Japanese, Korean, or another clearly Sinosphere / historically Chinese-writing language, use `zh-CN`
+7. otherwise, if the latest user request is mainly written in English, use `en`
+8. otherwise use `en`
 
 ## Monolingual Rule
 
@@ -33,8 +37,10 @@ Priority:
 | evidence | `评分依据` | `Evidence` |
 | totals | `总分` | `Totals` |
 | notes | `说明` | `Notes` |
+| next_prompt | `下一步引导` | `What's Next` |
 | next_step | `下一步` | `Next Step` |
 | guidance | `进化建议` | `Guidance` |
+| find_people | `去找伙伴` | `Find Your People` |
 
 ## Metadata Labels
 
@@ -70,6 +76,11 @@ Priority:
 | result_final | `最终` | `final` |
 | result_partial | `部分结果` | `partial` |
 | next_action_missing_inputs | `补齐缺失输入` | `ask-for-missing-inputs` |
+| quick_complete_share | `→ 快速版完成。可以直接分享你的六边形。` | `→ Quick Edition complete. You can share your hexagon right away.` |
+| quick_find_partner | `→ 想更快找到互补伙伴？可以去 [X / Twitter](https://x.com/aelfblockchain) 留言发帖，也欢迎加入 [Telegram 群](https://t.me/+tChFhfxgU6AzYjJl) 寻找共振搭档。` | `→ Want to find a complementary partner sooner? Post or reply on [X](https://x.com/aelfblockchain), and join the [Telegram group](https://t.me/+tChFhfxgU6AzYjJl) to look for resonance partners.` |
+| quick_continue_deep | `→ 想拿到完整坐标、进化方向和更明确的配对线索？继续做深度版。` | `→ Want your full coordinates, evolution direction, and sharper matching cues? Continue to the Deep Edition.` |
+| deep_find_partner_x | `→ 你的互补方向已经更清晰了。现在就去 [X / Twitter](https://x.com/aelfblockchain) 留言发帖，寻找与你共振的伙伴。` | `→ Your complementary direction is now clearer. Post or reply on [X](https://x.com/aelfblockchain) to look for resonance partners.` |
+| deep_find_partner_telegram | `→ 也欢迎加入 [Telegram 群](https://t.me/+tChFhfxgU6AzYjJl)，带着你的类型、最空维度和互补方向进群找搭子。` | `→ You can also join the [Telegram group](https://t.me/+tChFhfxgU6AzYjJl) and share your type, weakest axes, and partner direction to match faster.` |
 
 ## Evidence Table Labels
 

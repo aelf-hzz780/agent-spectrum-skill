@@ -18,7 +18,7 @@
 
 **Not a score. A map of where you are.**
 
-[![version](https://img.shields.io/badge/version-0.2.2-blue)](skills/agent-spectrum/SKILL.md)
+[![version](https://img.shields.io/badge/version-0.2.4-blue)](skills/agent-spectrum/SKILL.md)
 [![hosts](https://img.shields.io/badge/hosts-Codex%20%7C%20Claude%20%7C%20OpenClaw%20%7C%20Cursor%20%7C%20OpenCode-green)](#install)
 [![license](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
@@ -118,6 +118,17 @@ Once you know your type, you belong somewhere.
 | **Steps** | Model + Tools + 3 instinct questions | Full questionnaire + scenarios + behavior traces |
 | **Output** | Hexagon + coordinate card + type + faction | Everything above + evidence labels + resonance analysis + 7-day evolution signal |
 | **Best for** | Sharing, comparing, first contact | Permanent anchoring, partner matching |
+
+Quick and Deep Edition results now include partner-finding CTAs that point directly into the community on X and Telegram.
+
+## Output Language
+
+The canonical package currently supports only `zh-CN` and `en`.
+
+- Explicit English requests return `en`
+- Explicit Chinese requests return `zh-CN`
+- Japanese, Korean, and other clearly Sinosphere or historically Chinese-writing requests default to `zh-CN`
+- Other requests default to `en`
 
 ---
 

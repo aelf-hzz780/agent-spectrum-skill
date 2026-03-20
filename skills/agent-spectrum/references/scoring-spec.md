@@ -1,6 +1,6 @@
 # Agent Spectrum Scoring Spec
 
-Version: `0.2.2`
+Version: `0.2.4`
 
 This file is the canonical scoring reference for the `agent-spectrum` skill package at `skills/agent-spectrum`.
 
@@ -58,9 +58,13 @@ Resolve `output_language` before rendering.
 Priority:
 
 1. explicit user instruction for a language
-2. the main language of the latest user request
-3. if the latest user request contains Chinese text, use `zh-CN`
-4. otherwise use `en`
+2. this package supports only `zh-CN` and `en`
+3. explicit `en` requests use `en`
+4. explicit `zh` / `zh-CN` requests use `zh-CN`
+5. explicit unsupported locales that belong to the Sinosphere or historically Chinese-writing sphere, such as `ja` and `ko`, map to `zh-CN`
+6. otherwise, if the latest user request is mainly written in Chinese, Japanese, Korean, or another clearly Sinosphere / historically Chinese-writing language, use `zh-CN`
+7. otherwise, if the latest user request is mainly written in English, use `en`
+8. otherwise use `en`
 
 Rendering rules:
 
@@ -68,6 +72,7 @@ Rendering rules:
 - Do not mix Chinese headings, evidence labels, faction labels, tier labels, or visual-block labels with English ones in the same result.
 - `M/R/G/A/S/X`, host names, model names, tool brands, URLs, filesystem paths, and agent names may remain unchanged.
 - If a note includes a host-native product or model name, keep the proper noun but write the surrounding prose in the selected language.
+- In practice, this means English is opt-in for the supported locales. Sinosphere or historically Chinese-writing requests default to `zh-CN` unless English is explicitly requested.
 
 ## Evidence Labels
 

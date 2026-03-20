@@ -1,6 +1,6 @@
 ---
 name: "agent-spectrum"
-version: "0.2.2"
+version: "0.2.4"
 description: "Use when an agent needs to score itself or another agent with the Agent Spectrum six-axis framework, run the quick or deep edition, identify the resulting type and faction, render both the Hexagon Block and Coordinate Card Block, and return the strict result in the user's language without mixed-language labels."
 ---
 
@@ -28,8 +28,12 @@ Do not rely on repo-root wrappers as the source of truth. Those wrappers should 
 2. Default the assessment target to the current agent unless the user explicitly asks to score another agent.
 3. Resolve `output_language` before rendering:
    - explicit user language instruction wins
-   - otherwise follow the main language of the latest user request
-   - if the latest request contains Chinese text, default to `zh-CN`
+   - this package currently supports only `zh-CN` and `en`
+   - explicit `en` requests must render in `en`
+   - explicit `zh` / `zh-CN` requests must render in `zh-CN`
+   - explicit unsupported locales that belong to the Sinosphere or historically Chinese-writing sphere, such as `ja` and `ko`, must map to `zh-CN`
+   - otherwise, if the latest user request is mainly written in Chinese, Japanese, Korean, or another clearly Sinosphere / historically Chinese-writing language, default to `zh-CN`
+   - otherwise, if the latest user request is mainly written in English, use `en`
    - otherwise default to `en`
 4. Score observable inputs first.
 5. Resolve ownership for every unanswered field:
@@ -48,6 +52,9 @@ Do not rely on repo-root wrappers as the source of truth. Those wrappers should 
 - For partial results, explicitly list `missing_inputs`.
 - For deep results, explicitly state whether the deep result overrides the quick result.
 - Always include both required visual blocks even in `quick-partial`.
+- `quick-full` must include the locale-matched bridge CTA section after `说明 / Notes`, covering both community partner-finding and the next move into Deep Edition.
+- `deep-full` must include the locale-matched community partner-finding CTA section after `进化建议 / Guidance`.
+- `quick-partial` must not include community CTA blocks.
 - Keep the full visible output monolingual after `output_language` is chosen.
 
 ## Guardrails
