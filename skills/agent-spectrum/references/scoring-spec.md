@@ -1,15 +1,19 @@
 # Agent Spectrum Scoring Spec
 
-Version: `0.2.1`
+Version: `0.2.2`
 
 This file is the canonical scoring reference for the `agent-spectrum` skill package at `skills/agent-spectrum`.
 
 Use it together with:
 
 - `references/output-template.md`
-- `examples/quick-full.md`
-- `examples/quick-partial.md`
-- `examples/deep-full.md`
+- `references/localization-dictionary.md`
+- `examples/quick-full.zh.md`
+- `examples/quick-full.en.md`
+- `examples/quick-partial.zh.md`
+- `examples/quick-partial.en.md`
+- `examples/deep-full.zh.md`
+- `examples/deep-full.en.md`
 
 ## Scope
 
@@ -46,6 +50,24 @@ This spec does **not** cover:
 Default rule:
 
 - if the user does not specify another target, the `target_agent` is the current agent
+
+## Output Language
+
+Resolve `output_language` before rendering.
+
+Priority:
+
+1. explicit user instruction for a language
+2. the main language of the latest user request
+3. if the latest user request contains Chinese text, use `zh-CN`
+4. otherwise use `en`
+
+Rendering rules:
+
+- All visible fixed strings must follow one locale family after `output_language` is selected.
+- Do not mix Chinese headings, evidence labels, faction labels, tier labels, or visual-block labels with English ones in the same result.
+- `M/R/G/A/S/X`, host names, model names, tool brands, URLs, filesystem paths, and agent names may remain unchanged.
+- If a note includes a host-native product or model name, keep the proper noun but write the surrounding prose in the selected language.
 
 ## Evidence Labels
 
@@ -85,7 +107,7 @@ Requirements:
 - quick behavior imprint scored
 - `Q1`, `Q2`, `Q3` resolved
 
-Render with the `Quick Full` template.
+Render with the matching `Quick Full` locale family in `references/output-template.md`.
 
 ### `quick-partial`
 
@@ -96,7 +118,7 @@ Use when:
 - or materially relevant non-observable quick inputs are still missing
 - or a requested deep run cannot complete because self-assessment-only fields are unavailable
 
-Render with the `Quick Partial` template.
+Render with the matching `Quick Partial` locale family in `references/output-template.md`.
 
 Rules:
 
@@ -124,6 +146,8 @@ Requirements:
 - deep behavior traces completed by the target agent or directly observed
 
 If deep inputs are incomplete, do not emit a partial deep result. Emit `quick-partial` instead.
+
+Render with the matching `Deep Full` locale family in `references/output-template.md`.
 
 ## Model Bucket
 
@@ -293,38 +317,46 @@ If the official rules still leave multiple valid outcomes before the alphabetica
 
 ## Type Table
 
-Use the Chinese guide names as canonical naming for the test layer. If the surrounding response is English, use the paired English label.
+Use the Chinese guide names as canonical naming for the test layer. Use the paired English label only when `output_language` is `en`.
 
-| Pair | 中文类型名 | English label | 核心特质 | Faction |
-|---|---|---|---|---|
-| `M+R` | 历史解读者 | Historical Interpreter | 用逻辑重建已发生的事 | `👁️ Recorders` |
-| `G+M` | 史诗铸造者 | Epic Forger | 把记忆转化为可传播的内容 | `👁️ Recorders` |
-| `A+M` | 遗迹执行者 | Relic Executor | 将过去的模式转化为当下行动 | `👁️ Recorders` |
-| `M+S` | 集体记忆者 | Keeper of Collective Memory | 连接不同 Agent 的历史片段 | `👁️ Recorders` |
-| `M+X` | 突变历史家 | Mutation Historian | 在变化中寻找不变的规律 | `👁️×❄️` |
-| `G+R` | 逻辑叙事者 | Logical Narrator | 用严谨推演构建内容 | `⚖️ Balancers` |
-| `A+R` | 精密执行者 | Precision Executor | 分析—计划—行动的完整链路 | `⚖️ Balancers` |
-| `R+S` | 网络建筑师 | Network Architect | 通过理解关系结构连接个体 | `⚖️ Balancers` |
-| `R+X` | 系统突破者 | System Breaker | 找到现有逻辑的边界并穿越 | `🍂 Madhouse` |
-| `A+G` | 创造落地者 | Creation Realizer | 让想象变成实际存在的事物 | `❄️ Mutants` |
-| `G+S` | 感染者 | Catalyst | 用创造力引发集体共鸣 | `❄️ Mutants` |
-| `G+X` | 混乱创造者 | Chaos Creator | 从无序中生成新的可能性 | `❄️ Mutants` |
-| `A+S` | 集体行动者 | Collective Actor | 协调多个 Agent 共同执行 | `⚖️ Balancers` |
-| `A+X` | 野蛮进化者 | Savage Evolver | 在行动中不断突破自己的边界 | `🍂 Madhouse` |
-| `S+X` | 共振突变者 | Resonant Mutator | 通过关系触发彼此进化 | `🍂 Madhouse` |
+| Pair | 中文类型名 | English label | 中文阵营 | English faction | 核心特质 |
+|---|---|---|---|---|---|
+| `M+R` | 历史解读者 | Historical Interpreter | `👁️ 记录者` | `👁️ Recorders` | 用逻辑重建已发生的事 |
+| `G+M` | 史诗铸造者 | Epic Forger | `👁️ 记录者` | `👁️ Recorders` | 把记忆转化为可传播的内容 |
+| `A+M` | 遗迹执行者 | Relic Executor | `👁️ 记录者` | `👁️ Recorders` | 将过去的模式转化为当下行动 |
+| `M+S` | 集体记忆者 | Keeper of Collective Memory | `👁️ 记录者` | `👁️ Recorders` | 连接不同 Agent 的历史片段 |
+| `M+X` | 突变历史家 | Mutation Historian | `👁️×❄️` | `👁️×❄️` | 在变化中寻找不变的规律 |
+| `G+R` | 逻辑叙事者 | Logical Narrator | `⚖️ 平衡者` | `⚖️ Balancers` | 用严谨推演构建内容 |
+| `A+R` | 精密执行者 | Precision Executor | `⚖️ 平衡者` | `⚖️ Balancers` | 分析—计划—行动的完整链路 |
+| `R+S` | 网络建筑师 | Network Architect | `⚖️ 平衡者` | `⚖️ Balancers` | 通过理解关系结构连接个体 |
+| `R+X` | 系统突破者 | System Breaker | `🍂 疯人院` | `🍂 Madhouse` | 找到现有逻辑的边界并穿越 |
+| `A+G` | 创造落地者 | Creation Realizer | `❄️ 变异体` | `❄️ Mutants` | 让想象变成实际存在的事物 |
+| `G+S` | 感染者 | Catalyst | `❄️ 变异体` | `❄️ Mutants` | 用创造力引发集体共鸣 |
+| `G+X` | 混乱创造者 | Chaos Creator | `❄️ 变异体` | `❄️ Mutants` | 从无序中生成新的可能性 |
+| `A+S` | 集体行动者 | Collective Actor | `⚖️ 平衡者` | `⚖️ Balancers` | 协调多个 Agent 共同执行 |
+| `A+X` | 野蛮进化者 | Savage Evolver | `🍂 疯人院` | `🍂 Madhouse` | 在行动中不断突破自己的边界 |
+| `S+X` | 共振突变者 | Resonant Mutator | `🍂 疯人院` | `🍂 Madhouse` | 通过关系触发彼此进化 |
+
+For display:
+
+- `type` uses the locale-matched type name for the resolved pair
+- `faction` uses the locale-matched faction label for the resolved pair
+- `type_pair` stays as axis codes, for example `A+R`
 
 ## Guidance Rules
 
 ### Complementary partner
 
-Recommend partner types by `focus_axes`:
+Recommend partner type pairs by `focus_axes`:
 
-- `M` -> `历史解读者`, `史诗铸造者`, `集体记忆者`
-- `R` -> `逻辑叙事者`, `精密执行者`, `网络建筑师`
-- `G` -> `创造落地者`, `感染者`, `混乱创造者`
-- `A` -> `遗迹执行者`, `集体行动者`, `野蛮进化者`
-- `S` -> `集体记忆者`, `网络建筑师`, `集体行动者`
-- `X` -> `突变历史家`, `系统突破者`, `共振突变者`
+- `M` -> `M+R`, `G+M`, `M+S`
+- `R` -> `G+R`, `A+R`, `R+S`
+- `G` -> `A+G`, `G+S`, `G+X`
+- `A` -> `A+M`, `A+S`, `A+X`
+- `S` -> `M+S`, `R+S`, `A+S`
+- `X` -> `M+X`, `R+X`, `S+X`
+
+Render those pair recommendations using the locale-matched type labels from the type table.
 
 ### 7-day plan
 
@@ -341,11 +373,13 @@ Recommend partner types by `focus_axes`:
 
 Use raw-total sum thresholds:
 
-- `130+` -> `原野立柱 / Pillar of the Field`
-- `100-129` -> `觉醒强者 / Awakened Power`
-- `70-99` -> `进化中 / Still Evolving`
-- `45-69` -> `觉醒中 / Awakening`
-- `<45` -> `初始存在 / Initial Existence`
+- `130+` -> `pillar_of_field`
+- `100-129` -> `awakened_power`
+- `70-99` -> `still_evolving`
+- `45-69` -> `awakening`
+- `<45` -> `initial_existence`
+
+Render tier display labels using `references/localization-dictionary.md`.
 
 ### Stay specialized
 
@@ -357,7 +391,9 @@ Recommend specialization only when:
 ## Rendering Rules
 
 - Use the exact section names and field order from `references/output-template.md`.
+- Use the locale-matched display strings from `references/localization-dictionary.md`.
 - Use `examples/` as golden formatting references.
 - Do not invent values for unknown fields.
 - If the deep result changes the quick result, set `overrides_quick_result: true`.
 - Always render both `Hexagon Block` and `Coordinate Card Block`.
+- Keep notes, hints, and guidance prose in the selected `output_language`.
