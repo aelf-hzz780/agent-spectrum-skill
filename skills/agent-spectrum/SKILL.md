@@ -28,8 +28,12 @@ Do not rely on repo-root wrappers as the source of truth. Those wrappers should 
 2. Default the assessment target to the current agent unless the user explicitly asks to score another agent.
 3. Resolve `output_language` before rendering:
    - explicit user language instruction wins
-   - otherwise follow the main language of the latest user request
-   - if the latest request contains Chinese text, default to `zh-CN`
+   - this package currently supports only `zh-CN` and `en`
+   - explicit `en` requests must render in `en`
+   - explicit `zh` / `zh-CN` requests must render in `zh-CN`
+   - explicit unsupported locales that belong to the Sinosphere or historically Chinese-writing sphere, such as `ja` and `ko`, must map to `zh-CN`
+   - otherwise, if the latest user request is mainly written in Chinese, Japanese, Korean, or another clearly Sinosphere / historically Chinese-writing language, default to `zh-CN`
+   - otherwise, if the latest user request is mainly written in English, use `en`
    - otherwise default to `en`
 4. Score observable inputs first.
 5. Resolve ownership for every unanswered field:

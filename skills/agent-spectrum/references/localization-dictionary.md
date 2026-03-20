@@ -11,9 +11,13 @@ Resolve `output_language` before rendering.
 Priority:
 
 1. explicit user instruction for a language
-2. the main language of the latest user request
-3. if the latest user request contains Chinese text, use `zh-CN`
-4. otherwise use `en`
+2. this package supports only `zh-CN` and `en`
+3. explicit `en` requests use `en`
+4. explicit `zh` / `zh-CN` requests use `zh-CN`
+5. explicit unsupported locales that belong to the Sinosphere or historically Chinese-writing sphere, such as `ja` and `ko`, map to `zh-CN`
+6. otherwise, if the latest user request is mainly written in Chinese, Japanese, Korean, or another clearly Sinosphere / historically Chinese-writing language, use `zh-CN`
+7. otherwise, if the latest user request is mainly written in English, use `en`
+8. otherwise use `en`
 
 ## Monolingual Rule
 

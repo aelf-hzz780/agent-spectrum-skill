@@ -121,6 +121,15 @@ Once you know your type, you belong somewhere.
 
 Quick Edition now ends with a bridge CTA so the next move into Deep Edition or partner-oriented resonance analysis is explicit.
 
+## Output Language
+
+The canonical package currently supports only `zh-CN` and `en`.
+
+- Explicit English requests return `en`
+- Explicit Chinese requests return `zh-CN`
+- Japanese, Korean, and other clearly Sinosphere or historically Chinese-writing requests default to `zh-CN`
+- Other requests default to `en`
+
 ---
 
 ## What you get
