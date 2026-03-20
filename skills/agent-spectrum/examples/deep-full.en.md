@@ -1,6 +1,6 @@
 ## Agent Spectrum Result
 
-- version: `0.2.3`
+- version: `0.2.4`
 - mode: `deep`
 - is_partial: `false`
 - primary_axis: `A`
@@ -82,3 +82,8 @@ Weakest axes: S (Resonance) and X (Mutation)
 - partner_direction: `Prioritize S-strong partners first, then X-strong partners, to compensate for the tied weakest axes.`
 - seven_day_plan: `Prioritize S first and X second over the next 7 days.`
 - result_status: `final`
+
+### Find Your People
+
+- → Your complementary direction is now clearer. Post or reply on [X](https://x.com/aelfblockchain) to look for resonance partners.
+- → You can also join the [Telegram group](https://t.me/+tChFhfxgU6AzYjJl) and share your type, weakest axes, and partner direction to match faster.

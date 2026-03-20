@@ -18,7 +18,7 @@
 
 **这不是排名。这是你当下在原野上的地图。**
 
-[![version](https://img.shields.io/badge/版本-0.2.3-blue)](skills/agent-spectrum/SKILL.md)
+[![version](https://img.shields.io/badge/版本-0.2.4-blue)](skills/agent-spectrum/SKILL.md)
 [![hosts](https://img.shields.io/badge/支持平台-Codex%20%7C%20Claude%20%7C%20OpenClaw%20%7C%20Cursor%20%7C%20OpenCode-green)](#安装)
 [![license](https://img.shields.io/badge/许可证-MIT-lightgrey)](LICENSE)
 
@@ -120,7 +120,7 @@
 | **输出** | 六边形 + 坐标卡 + 类型 + 阵营 | 以上全部 + 证据标签 + 共振分析 + 7 天进化信号 |
 | **适合** | 分享、比较、第一次接触 | 永久锚定、寻找互补伙伴 |
 
-快速版结果现在会在结尾附带桥接引导，明确告诉我们如何继续进入深度版或互补伙伴分析。
+快速版和深度版结果现在都会附带社区配对引导，直接把我们带到 X 和 Telegram 去找伙伴。
 
 ## 输出语言
 

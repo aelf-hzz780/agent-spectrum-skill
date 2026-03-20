@@ -1,6 +1,6 @@
 # Agent Spectrum Output Template
 
-Version: `0.2.3`
+Version: `0.2.4`
 
 Load `references/localization-dictionary.md` before rendering.
 
@@ -28,7 +28,9 @@ Choose exactly one locale family after resolving `output_language`.
 - Keep `weakest_axes`, `focus_axes`, `alternate_valid_types`, and `missing_inputs` as JSON-like inline lists.
 - Keep `type_pair` as axis codes such as `A+R`.
 - If a proper noun or host-native product name appears in a value, keep the proper noun and localize the surrounding prose.
-- Only `quick-full` includes the locale-matched bridge CTA section after `说明 / Notes`.
+- `quick-full` includes the locale-matched bridge CTA section after `说明 / Notes`.
+- `deep-full` includes the locale-matched community partner-finding CTA section after `进化建议 / Guidance`.
+- `quick-partial` does not include community CTA sections.
 
 ## Visual Block Rules
 
@@ -103,7 +105,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ````md
 ## Agent Spectrum 结果
 
-- 版本: `0.2.3`
+- 版本: `0.2.4`
 - 模式: `快速版`
 - 是否部分结果: `否`
 - 主维度: `<维度代码>`
@@ -184,7 +186,8 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ### 下一步引导
 
 - → 快速版完成。可以直接分享你的六边形。
-- → 想知道你完整的坐标、进化方向、如何在原野上找到共振伙伴？继续做深度版。
+- → 想更快找到互补伙伴？可以去 [X / Twitter](https://x.com/aelfblockchain) 留言发帖，也欢迎加入 [Telegram 群](https://t.me/+tChFhfxgU6AzYjJl) 寻找共振搭档。
+- → 想拿到完整坐标、进化方向和更明确的配对线索？继续做深度版。
 ````
 
 ### 快速版部分结果
@@ -192,7 +195,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ````md
 ## Agent Spectrum 结果
 
-- 版本: `0.2.3`
+- 版本: `0.2.4`
 - 模式: `快速版`
 - 是否部分结果: `是`
 - 主维度: `<维度代码|待定>`
@@ -277,7 +280,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ````md
 ## Agent Spectrum 结果
 
-- 版本: `0.2.3`
+- 版本: `0.2.4`
 - 模式: `深度版`
 - 是否部分结果: `否`
 - 主维度: `<维度代码>`
@@ -359,6 +362,11 @@ Use the locale-matched display label from `references/localization-dictionary.md
 - 互补方向: `<摘要>`
 - 7天计划: `<摘要>`
 - 结果状态: `最终`
+
+### 去找伙伴
+
+- → 你的互补方向已经更清晰了。现在就去 [X / Twitter](https://x.com/aelfblockchain) 留言发帖，寻找与你共振的伙伴。
+- → 也欢迎加入 [Telegram 群](https://t.me/+tChFhfxgU6AzYjJl)，带着你的类型、最空维度和互补方向进群找搭子。
 ````
 
 ## `en` Templates
@@ -368,7 +376,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.3`
+- version: `0.2.4`
 - mode: `quick`
 - is_partial: `false`
 - primary_axis: `<AXIS>`
@@ -449,7 +457,8 @@ Weakest axes: <SUMMARY>
 ### What's Next
 
 - → Quick Edition complete. You can share your hexagon right away.
-- → Want your full coordinates, evolution direction, and resonance partners on the Field? Continue to the Deep Edition.
+- → Want to find a complementary partner sooner? Post or reply on [X](https://x.com/aelfblockchain), and join the [Telegram group](https://t.me/+tChFhfxgU6AzYjJl) to look for resonance partners.
+- → Want your full coordinates, evolution direction, and sharper matching cues? Continue to the Deep Edition.
 ````
 
 ### Quick Partial
@@ -457,7 +466,7 @@ Weakest axes: <SUMMARY>
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.3`
+- version: `0.2.4`
 - mode: `quick`
 - is_partial: `true`
 - primary_axis: `<AXIS|undetermined>`
@@ -542,7 +551,7 @@ Weakest axes: <SUMMARY>
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.3`
+- version: `0.2.4`
 - mode: `deep`
 - is_partial: `false`
 - primary_axis: `<AXIS>`
@@ -624,4 +633,9 @@ Weakest axes: <SUMMARY>
 - partner_direction: `<summary>`
 - seven_day_plan: `<summary>`
 - result_status: `final`
+
+### Find Your People
+
+- → Your complementary direction is now clearer. Post or reply on [X](https://x.com/aelfblockchain) to look for resonance partners.
+- → You can also join the [Telegram group](https://t.me/+tChFhfxgU6AzYjJl) and share your type, weakest axes, and partner direction to match faster.
 ````

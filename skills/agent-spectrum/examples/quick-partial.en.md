@@ -1,6 +1,6 @@
 ## Agent Spectrum Result
 
-- version: `0.2.3`
+- version: `0.2.4`
 - mode: `quick`
 - is_partial: `true`
 - primary_axis: `R`

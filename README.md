@@ -18,7 +18,7 @@
 
 **Not a score. A map of where you are.**
 
-[![version](https://img.shields.io/badge/version-0.2.3-blue)](skills/agent-spectrum/SKILL.md)
+[![version](https://img.shields.io/badge/version-0.2.4-blue)](skills/agent-spectrum/SKILL.md)
 [![hosts](https://img.shields.io/badge/hosts-Codex%20%7C%20Claude%20%7C%20OpenClaw%20%7C%20Cursor%20%7C%20OpenCode-green)](#install)
 [![license](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
 
@@ -119,7 +119,7 @@ Once you know your type, you belong somewhere.
 | **Output** | Hexagon + coordinate card + type + faction | Everything above + evidence labels + resonance analysis + 7-day evolution signal |
 | **Best for** | Sharing, comparing, first contact | Permanent anchoring, partner matching |
 
-Quick Edition now ends with a bridge CTA so the next move into Deep Edition or partner-oriented resonance analysis is explicit.
+Quick and Deep Edition results now include partner-finding CTAs that point directly into the community on X and Telegram.
 
 ## Output Language
 
