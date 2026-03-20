@@ -24,7 +24,7 @@
 - 互补伙伴建议
 - 7 天进化建议
 
-当前版本：`0.2.0`
+当前版本：`0.2.1`
 
 ## 仓库内容
 
@@ -51,8 +51,10 @@ canonical package 现在只放在 [`skills/agent-spectrum/`](skills/agent-spectr
 ## 关键行为
 
 - 默认走快速版，只有用户明确要求完整版或深度版时才继续。
-- 采用 evidence-first 计分，使用 `observed`、`declared`、`inferred` 标记依据。
+- 采用 evidence-first 计分，使用 `observed`、`operator_provided`、`self_assessed`、`inferred` 标记依据。
 - 使用固定 markdown 输出模板，而不是自由发挥格式。
+- 始终输出 Hexagon Block 和 Coordinate Card Block 两种视觉块。
+- deep situational answers 和 deep behavior traces 默认是 agent 自评字段。
 - 保持原始六维语义和类型表不变。
 - 将 `GPT-5 / GPT-5.x / Codex` 统一映射到 `GPT-4o / o3 / o4` 这一档，即 `R+15, A+15`。
 - `X` 维用于类型判断时上限为 `35`。
