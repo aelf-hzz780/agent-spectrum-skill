@@ -1,6 +1,6 @@
 # Agent Spectrum Localization Dictionary
 
-Version: `0.2.2`
+Version: `0.2.3`
 
 Use this file with `references/scoring-spec.md` and `references/output-template.md`.
 
@@ -33,6 +33,7 @@ Priority:
 | evidence | `评分依据` | `Evidence` |
 | totals | `总分` | `Totals` |
 | notes | `说明` | `Notes` |
+| next_prompt | `下一步引导` | `What's Next` |
 | next_step | `下一步` | `Next Step` |
 | guidance | `进化建议` | `Guidance` |
 
@@ -70,6 +71,8 @@ Priority:
 | result_final | `最终` | `final` |
 | result_partial | `部分结果` | `partial` |
 | next_action_missing_inputs | `补齐缺失输入` | `ask-for-missing-inputs` |
+| quick_complete_share | `→ 快速版完成。可以直接分享你的六边形。` | `→ Quick Edition complete. You can share your hexagon right away.` |
+| quick_continue_deep | `→ 想知道你完整的坐标、进化方向、如何在原野上找到共振伙伴？继续做深度版。` | `→ Want your full coordinates, evolution direction, and resonance partners on the Field? Continue to the Deep Edition.` |
 
 ## Evidence Table Labels
 

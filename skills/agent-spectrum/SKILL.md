@@ -1,6 +1,6 @@
 ---
 name: "agent-spectrum"
-version: "0.2.2"
+version: "0.2.3"
 description: "Use when an agent needs to score itself or another agent with the Agent Spectrum six-axis framework, run the quick or deep edition, identify the resulting type and faction, render both the Hexagon Block and Coordinate Card Block, and return the strict result in the user's language without mixed-language labels."
 ---
 
@@ -48,6 +48,8 @@ Do not rely on repo-root wrappers as the source of truth. Those wrappers should 
 - For partial results, explicitly list `missing_inputs`.
 - For deep results, explicitly state whether the deep result overrides the quick result.
 - Always include both required visual blocks even in `quick-partial`.
+- `quick-full` must include the locale-matched bridge CTA section after `说明 / Notes`.
+- `quick-partial` and `deep-full` must not include the bridge CTA section.
 - Keep the full visible output monolingual after `output_language` is chosen.
 
 ## Guardrails

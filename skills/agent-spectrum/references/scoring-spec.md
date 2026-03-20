@@ -1,6 +1,6 @@
 # Agent Spectrum Scoring Spec
 
-Version: `0.2.2`
+Version: `0.2.3`
 
 This file is the canonical scoring reference for the `agent-spectrum` skill package at `skills/agent-spectrum`.
 

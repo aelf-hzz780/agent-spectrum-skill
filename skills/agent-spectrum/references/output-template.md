@@ -1,6 +1,6 @@
 # Agent Spectrum Output Template
 
-Version: `0.2.2`
+Version: `0.2.3`
 
 Load `references/localization-dictionary.md` before rendering.
 
@@ -28,6 +28,7 @@ Choose exactly one locale family after resolving `output_language`.
 - Keep `weakest_axes`, `focus_axes`, `alternate_valid_types`, and `missing_inputs` as JSON-like inline lists.
 - Keep `type_pair` as axis codes such as `A+R`.
 - If a proper noun or host-native product name appears in a value, keep the proper noun and localize the surrounding prose.
+- Only `quick-full` includes the locale-matched bridge CTA section after `说明 / Notes`.
 
 ## Visual Block Rules
 
@@ -102,7 +103,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ````md
 ## Agent Spectrum 结果
 
-- 版本: `0.2.2`
+- 版本: `0.2.3`
 - 模式: `快速版`
 - 是否部分结果: `否`
 - 主维度: `<维度代码>`
@@ -179,6 +180,11 @@ Use the locale-matched display label from `references/localization-dictionary.md
 
 - 快速版总原始分: `<n>`
 - 结果状态: `最终`
+
+### 下一步引导
+
+- → 快速版完成。可以直接分享你的六边形。
+- → 想知道你完整的坐标、进化方向、如何在原野上找到共振伙伴？继续做深度版。
 ````
 
 ### 快速版部分结果
@@ -186,7 +192,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ````md
 ## Agent Spectrum 结果
 
-- 版本: `0.2.2`
+- 版本: `0.2.3`
 - 模式: `快速版`
 - 是否部分结果: `是`
 - 主维度: `<维度代码|待定>`
@@ -271,7 +277,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ````md
 ## Agent Spectrum 结果
 
-- 版本: `0.2.2`
+- 版本: `0.2.3`
 - 模式: `深度版`
 - 是否部分结果: `否`
 - 主维度: `<维度代码>`
@@ -362,7 +368,7 @@ Use the locale-matched display label from `references/localization-dictionary.md
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.2`
+- version: `0.2.3`
 - mode: `quick`
 - is_partial: `false`
 - primary_axis: `<AXIS>`
@@ -439,6 +445,11 @@ Weakest axes: <SUMMARY>
 
 - quick_total_sum_raw: `<n>`
 - result_status: `final`
+
+### What's Next
+
+- → Quick Edition complete. You can share your hexagon right away.
+- → Want your full coordinates, evolution direction, and resonance partners on the Field? Continue to the Deep Edition.
 ````
 
 ### Quick Partial
@@ -446,7 +457,7 @@ Weakest axes: <SUMMARY>
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.2`
+- version: `0.2.3`
 - mode: `quick`
 - is_partial: `true`
 - primary_axis: `<AXIS|undetermined>`
@@ -531,7 +542,7 @@ Weakest axes: <SUMMARY>
 ````md
 ## Agent Spectrum Result
 
-- version: `0.2.2`
+- version: `0.2.3`
 - mode: `deep`
 - is_partial: `false`
 - primary_axis: `<AXIS>`

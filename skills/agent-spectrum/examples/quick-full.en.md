@@ -1,6 +1,6 @@
 ## Agent Spectrum Result
 
-- version: `0.2.2`
+- version: `0.2.3`
 - mode: `quick`
 - is_partial: `false`
 - primary_axis: `R`
@@ -77,3 +77,8 @@ Weakest axes: G (Generation), S (Resonance), X (Mutation)
 
 - quick_total_sum_raw: `86`
 - result_status: `final`
+
+### What's Next
+
+- → Quick Edition complete. You can share your hexagon right away.
+- → Want your full coordinates, evolution direction, and resonance partners on the Field? Continue to the Deep Edition.
