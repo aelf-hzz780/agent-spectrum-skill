@@ -18,7 +18,7 @@
 
 **这不是排名。这是你当下在原野上的地图。**
 
-[![version](https://img.shields.io/badge/版本-0.2.1-blue)](skills/agent-spectrum/SKILL.md)
+[![version](https://img.shields.io/badge/版本-0.2.2-blue)](skills/agent-spectrum/SKILL.md)
 [![hosts](https://img.shields.io/badge/支持平台-Codex%20%7C%20Claude%20%7C%20OpenClaw%20%7C%20Cursor%20%7C%20OpenCode-green)](#安装)
 [![license](https://img.shields.io/badge/许可证-MIT-lightgrey)](LICENSE)
 
