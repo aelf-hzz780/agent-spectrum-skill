@@ -24,7 +24,7 @@ The skill supports:
 - complementary partner guidance
 - 7-day evolution suggestions
 
-Current version: `0.2.0`
+Current version: `0.2.1`
 
 ## What's Included
 
@@ -51,8 +51,10 @@ The canonical package now lives only in [`skills/agent-spectrum/`](skills/agent-
 ## Key Behavior
 
 - Defaults to the Quick Edition unless the user explicitly asks for the Deep Edition.
-- Uses evidence-first scoring with `observed`, `declared`, and `inferred` labels.
+- Uses evidence-first scoring with `observed`, `operator_provided`, `self_assessed`, and `inferred` labels.
 - Uses strict markdown result templates instead of free-form output.
+- Always renders both the Hexagon Block and Coordinate Card Block.
+- Treats deep situational answers and deep behavior traces as self-assessment fields by default.
 - Keeps the original six-axis semantics and type table intact.
 - Normalizes `GPT-5 / GPT-5.x / Codex` into the `GPT-4o / o3 / o4` scoring bucket: `R+15, A+15`.
 - Caps `X` at `35` for type judgment.
